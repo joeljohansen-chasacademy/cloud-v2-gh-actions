@@ -19,10 +19,10 @@ describe("getRelativeTime", () => {
     expect(result).toBe("10m ago");
   });
 
-  // Demo: ett test som ska faila så vi ser röd bock i CI
-  it("intentionally fails so we can demo CI feedback", () => {
-    const result = getRelativeTime(new Date().toISOString());
-    // Det här kommer inte stämma, och det är meningen :)
-    expect(result).toBe("now");
-  });
+  //   // Demo: ett test som ska faila så vi ser röd bock i CI
+  //   it("intentionally fails so we can demo CI feedback", () => {
+  //     const result = getRelativeTime(new Date().toISOString());
+  //     // Det här kommer inte stämma, och det är meningen :)
+  //     expect(result).toBe("now");
+  //   });
 });
