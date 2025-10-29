@@ -29,10 +29,10 @@ Det skapar `jest.config.js` ungefär så här:
 ```js
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
-	testEnvironment: "node",
-	transform: {
-		"^.+\\.tsx?$": ["ts-jest", {}],
-	},
+  testEnvironment: "node",
+  transform: {
+    "^.+\\.tsx?$": ["ts-jest", {}],
+  },
 };
 ```
 
@@ -46,17 +46,17 @@ Skapa `lib/utils.ts`:
 
 ```ts
 export function getRelativeTime(dateString: string): string {
-	const date = new Date(dateString);
-	const now = new Date();
-	const seconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+  const date = new Date(dateString);
+  const now = new Date();
+  const seconds = Math.floor((now.getTime() - date.getTime()) / 1000);
 
-	if (seconds < 60) return `${seconds}s ago`;
-	const minutes = Math.floor(seconds / 60);
-	if (minutes < 60) return `${minutes}m ago`;
-	const hours = Math.floor(minutes / 60);
-	if (hours < 24) return `${hours}h ago`;
-	const days = Math.floor(hours / 24);
-	return `${days}d ago`;
+  if (seconds < 60) return `${seconds}s ago`;
+  const minutes = Math.floor(seconds / 60);
+  if (minutes < 60) return `${minutes}m ago`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  return `${days}d ago`;
 }
 ```
 
@@ -74,30 +74,30 @@ Skapa `lib/utils.test.ts`:
 import { getRelativeTime } from "./utils";
 
 describe("getRelativeTime", () => {
-	it("returns seconds ago for recent dates", () => {
-		const now = new Date();
-		const fiveSecondsAgo = new Date(now.getTime() - 5000).toISOString();
-		const result = getRelativeTime(fiveSecondsAgo);
+  it("returns seconds ago for recent dates", () => {
+    const now = new Date();
+    const fiveSecondsAgo = new Date(now.getTime() - 5000).toISOString();
+    const result = getRelativeTime(fiveSecondsAgo);
 
-		expect(result).toBe("5s ago");
-	});
+    expect(result).toBe("5s ago");
+  });
 
-	it("returns minutes ago for slightly older timestamps", () => {
-		const now = new Date();
-		const tenMinutesAgo = new Date(
-			now.getTime() - 10 * 60 * 1000
-		).toISOString();
-		const result = getRelativeTime(tenMinutesAgo);
+  it("returns minutes ago for slightly older timestamps", () => {
+    const now = new Date();
+    const tenMinutesAgo = new Date(
+      now.getTime() - 10 * 60 * 1000
+    ).toISOString();
+    const result = getRelativeTime(tenMinutesAgo);
 
-		expect(result).toBe("10m ago");
-	});
+    expect(result).toBe("10m ago");
+  });
 
-	// Demo: ett test som ska faila så vi ser röd bock i CI
-	it("intentionally fails so we can demo CI feedback", () => {
-		const result = getRelativeTime(new Date().toISOString());
-		// Det här kommer inte stämma, och det är meningen :)
-		expect(result).toBe("now");
-	});
+  // Demo: ett test som ska faila så vi ser röd bock i CI
+  it("intentionally fails so we can demo CI feedback", () => {
+    const result = getRelativeTime(new Date().toISOString());
+    // Det här kommer inte stämma, och det är meningen :)
+    expect(result).toBe("now");
+  });
 });
 ```
 
