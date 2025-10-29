@@ -1,7 +1,7 @@
 export const getRelativeTime = (dateString: string) => {
 	const date = new Date(dateString);
 	const now = new Date();
-	const seconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+	const seconds = Math.floor((now.getTime() - date.getTime()) / 100);
 
 	if (seconds < 60) return `${seconds}s ago`;
 	const minutes = Math.floor(seconds / 60);
